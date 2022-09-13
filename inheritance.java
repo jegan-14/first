@@ -1,150 +1,66 @@
-package expno3;
 import java.util.Scanner;
-public class inheritance
-{
-    public static void main(String[] args)
+public class inheritance {
+    public static void main(String args[])
     {
-        System.out.println("-----------STUDENT-----------");
-        Student obj=new Student("Jeganath","Madurai","JAVA",2022,80000);
-        System.out.println(obj.getName());
-        System.out.println(obj.getAddress());
-        System.out.println(obj.getProgram());
-        String pro1;
-        System.out.println("Enter the program to be changed:");
-        Scanner scan=new Scanner(System.in);
-        pro1=scan.next();
-        obj.setProgram(pro1);
-        System.out.println(obj.getYear());
-        int yr;
-        System.out.println("Enter the year to be changed:");
-        yr=scan.nextInt();
-        obj.setYear(yr);
-        System.out.println(obj.getFee());
-        System.out.println("Enter the fees to be changed:");
-        double fees;
-        fees=scan.nextDouble();
-        obj.setFee(fees);
-        System.out.println(obj.toString());
-        System.out.println("-----------STAFF-----------");
-        Staff obj1=new Staff("Sankar","OOTY","Chemistry",100000);
-        System.out.println(obj1.getName());
-        System.out.println(obj1.getAddress());
-        System.out.println(obj1.getSchool());
-        String scl;
-        System.out.println("Enter the school to be changed:");
-        scl=scan.next();
-        obj1.setSchool(scl);
-        System.out.println(obj1.getPay());
-        System.out.println("Enter the pay to be changed:");
-        double p=scan.nextDouble();
-        obj1.setPay(p);
-        System.out.println(obj1.toString());
-    }    
+      Scanner scan=new Scanner(System.in);
+      int resize;
+      System.out.println("Enter resize:");
+      resize=scan.nextInt();
+      Rectangle obj1=new Rectangle();
+      System.out.println("--------------------TRIANGLE--------------------");
+      System.out.println("Area before resize:"+obj1.getArea());
+      System.out.println("Perimeter before resize:"+obj1.getPerimeter());
+      obj1.resize(resize);
+      System.out.println("Area after resize:"+obj1.getArea());
+      System.out.println("Perimeter after resize:"+obj1.getPerimeter());
+      Circle obj2=new Circle();
+      System.out.println("--------------------CIRCLE--------------------");
+      System.out.println("Area before resize:"+obj2.getArea());
+      System.out.println("Perimeter before resize:"+obj2.getPerimeter());
+      obj2.resize(resize);
+      System.out.println("Area after resize:"+obj2.getArea());
+      System.out.println("Perimeter after resize:"+obj2.getPerimeter());
+    }
 }
-class person
+interface Resizable
 {
-    String name;
-    String address;
-    person(String n,String add)
-    {
-        name=n;
-        address=add;
-    }
-    String getName()
-    {
-        return name;
-    }
-    String getAddress()
-    {
-        return address;
-    }
-    void setAddress(String add)
-    {
-        address=add;
-        System.out.println("Address:"+address);
-    }
-    @Override
-    public String toString()
-    {
-        return "Name="+name+" Address="+address;
-    }   
+ void resize(int x);
 }
-class Student extends person
+class Rectangle implements Resizable
 {
-    String program;
-    int year;
-    double fee;
-    Student(String na,String ad,String pro,int yr,double fees)
-    {
-        super(na,ad);
-        program=pro;
-        year=yr;
-        fee=fees;
-    }
-    String getProgram()
-    {
-        return program;
-    }
-    void setProgram(String prog)
-    {
-        program=prog;
-        System.out.println("Program:"+program);
-    }
-    int getYear()
-    {
-        return year;
-    }
-    void setYear(int yr)
-    {
-        year=yr;
-        System.out.println("Year:"+year);
-    }
-    double getFee()
-    {
-        return fee;
-    }
-    void setFee(double f)
-    {
-        fee=f;
-        System.out.println("Fees:"+fee);
-    }
+    int length=10;
+    int breadth=5;
     @Override
-    public String toString()
+    public void resize(int x) 
     {
-     return "Name:"+name+" Address:"+address+" Program:"+program+" Year:"+year+" Fees:"+fee; 
-    }    
+        length*=x;
+        breadth*=x;
+        System.out.println("After resize\nLength:"+length+"\nBreadth:"+breadth);
+    }
+    int getArea()
+    {
+        return length*breadth;
+    }
+    int getPerimeter()
+    {
+        return 2*(length+breadth);
+    }
 }
-class Staff extends person
+class Circle implements Resizable
 {
-    String school;
-    double pay;
-    Staff(String n1,String addr,String scl,double p)
-    {
-        super(n1,addr);
-        school=scl;
-        pay=p;
-    }
-    String getSchool()
-    {
-       return school;     
-    }
-    void setSchool(String sl)
-    {
-        school=sl;
-        System.out.println("School:"+school);
-    }
-    double getPay()
-    {
-        return pay;
-    }
-    void setPay(Double pa)
-    {
-        pay=pa;
-        System.out.println("Pay:"+pay);       
-    }
+    int radius=10;
     @Override
-    public String toString()
+    public void resize(int x)
     {
-        return "Name:"+name+" Address:"+address+" School;"+school+" Pay:"+pay; 
+       radius*=x;
+       System.out.println("After resize\nRadius:"+radius);
+    }
+    double getArea()
+    {
+        return 3.14*radius*radius;
+    }
+    double getPerimeter()
+    {
+        return 2*3.14*radius;
     }
 }
