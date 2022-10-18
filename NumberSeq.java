@@ -1,35 +1,47 @@
-class Sequence implements Runnable {
+class Sequence implements Runnable 
+{
 
     SeqNo numbers;
     int reminder;
 
-     Sequence(SeqNo Num, int index) {
+     Sequence(SeqNo Num, int index)
+     {
         numbers = Num;
         reminder = index;
     }
     @Override
-    public void run() {
+    public void run() 
+    {
         numbers.display(this.reminder);
     }
 } 
-class SeqNo {
+class SeqNo 
+{
     int i = 1;
     int threadCount;
     int max;
 
-    SeqNo(int threadct, int maxi) {
+    SeqNo(int threadct, int maxi)
+    {
         threadCount = threadct;
         max = maxi;
     }
 
-    void display(int rem) {
-        synchronized (this) {
-            while(i < max-1) {
-                while (i % threadCount != rem) {
-                    try {
+    void display(int rem)
+    {
+        synchronized (this)
+        {
+            while(i < max-1)
+            {
+                while (i % threadCount != rem)
+                {
+                    try
+                    {
                         wait();
                         Thread.sleep(400);
-                    } catch (InterruptedException e) {
+                    } 
+                    catch (InterruptedException e)
+                    {
                         e.printStackTrace();
                     }
                 }
@@ -40,10 +52,12 @@ class SeqNo {
         }
     }
 }
-public class NumberSeq{
+public class NumberSeq
+{
     static int no=3,maximum=9;
 
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         SeqNo obj= new SeqNo(no, maximum);
 
         Thread t1 = new Thread(new Sequence(obj, 1), "Thread 1");
